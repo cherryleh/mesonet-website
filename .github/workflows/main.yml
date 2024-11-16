@@ -1,36 +1,39 @@
 name: Deploy Angular to GitHub Pages
-
 on:
   push:
-    branches:
-      - main  # Trigger workflow on push to the 'main' branch
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
+    - uses: actions/checkout@v2
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
-        node-version: 18  # Specify your Node.js version
-
+        node-version: '16.x' 
     - name: Install dependencies
-      run: npm ci  # Install dependencies using npm ci (faster for CI environments)
+      run: npm ci
+    - name: Build
+      run: npm run build --prod
 
-    - name: Build Angular project
-      run: npm run build -- --configuration production --base-href "/mesonet-website/"  # Set the base-href to match your repo's name
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18' 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
-        publish_dir: ./dist/mesonet-website  # Path to your Angular app's build output directory
-        publish_branch: gh-pages  # Specify the branch to deploy to (gh-pages by default)
-        allow_empty_commit: false  # Don't allow empty commits
-        keep_files: false  # Clean up old files before deploying new ones
-        force_orphan: true  # Create an orphan branch if the gh-pages branch does not exist
-        disable_nojekyll: true  # Disable Jekyll processing (important for Angular apps)
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist/mesonet-website
