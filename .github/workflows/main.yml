@@ -20,13 +20,18 @@ jobs:
         run: |
             mkdir -p mesonet-website/src/environments
             echo "export const environment = { production: true, apiToken: '${{ secrets.API_CONFIG_JSON }}' };" > mesonet-website/src/environments/environment.prod.ts
-      - name: Verify environment.prod.ts
-        run: |
-          cat mesonet-website/src/environments/environment.prod.ts
+      - name: Show project structure
+        working-directory: mesonet-website
+        run: tree
+
+      - name: Show TypeScript compiler options
+        working-directory: mesonet-website
+        run: cat tsconfig.json
+
       - name: Build Angular app to prod
         working-directory: mesonet-website
         run: npm install && npm run build:prod
-
+      
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
