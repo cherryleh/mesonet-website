@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: 18
       - name: Add API configuration
-        run: echo "${{ secrets.API_CONFIG_JSON }}" | base64 -d >> src/assets/api_config.json
+        run: |
+              mkdir -p src/assets
+              echo "${{ secrets.API_CONFIG_JSON }}" | base64 -d >> src/assets/api_config.json
 
 
       - name: Build Angular app to prod
