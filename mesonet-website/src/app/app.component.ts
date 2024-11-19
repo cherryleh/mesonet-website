@@ -1,55 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; // Import RouterOutlet
-import { CommonModule } from '@angular/common'; // Import CommonModule for the json pipe
+import { CommonModule } from '@angular/common';
 import { ConfigService } from './config.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  standalone: true, // Standalone component
-  imports: [RouterOutlet, CommonModule], // Add CommonModule to imports
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'mesonet-website'; // Keep the title variable
-  apiToken: string | undefined;
-  data: any; // Store the data fetched from the API
+    title = 'mesonet-website';
+    apiToken: string | undefined;
+    data: any;
 
-  constructor(
-    private configService: ConfigService,
-    private http: HttpClient
-  ) {}
+    constructor(
+        private configService: ConfigService,
+        private http: HttpClient
+    ) {}
 
-  ngOnInit(): void {
-    // Fetch the API token
-    this.configService.getApiConfig().subscribe((config) => {
-      this.apiToken = config.apiToken; // Store the API token
-      this.fetchData(); // Fetch data after the token is available
-    });
-  }
+    ngOnInit(): void {
+        this.configService.getApiConfig().subscribe({
+            next: (config) => {
+                this.apiToken = config.apiToken;
+                this.fetchData();
+            },
+            error: (err) => console.error('Error fetching config:', err),
+        });
+    }
 
-  // Function to make an API request using the token
-  fetchData(): void {
-    const apiUrl = 'https://api.example.com/data'; // Replace with your API endpoint
+    fetchData(): void {
+        const apiUrl = 'https://api.hcdp.ikewai.org/mesonet/db/measurements?location=hawaii&station_ids=0288&var_ids=RF_1_Tot300s&limit=10&local_tz=True';
 
-    this.http
-      .get(apiUrl, {
-        headers: {
-          'Authorization': `Bearer ${this.apiToken}`,
-        },
-      })
-      .subscribe({
-        next: (response) => {
-          this.data = response;
-          console.log('Fetched Data:', this.data);
-        },
-        error: (error) => {
-          console.error('Error fetching data:', error);
-        },
-        complete: () => {
-          console.log('API request complete');
-        }
-      });
-  }
+        const headers = new HttpHeaders({
+            Authorization: `Bearer ${this.apiToken}`,
+        });
+
+        this.http.get(apiUrl, { headers }).subscribe({
+            next: (response) => {
+                this.data = response;
+                console.log('Fetched Data:', this.data);
+            },
+            error: (err) => console.error('Error fetching data:', err),
+            complete: () => console.log('API request complete'),
+        });
+    }
 }
