@@ -24,9 +24,11 @@ jobs:
         working-directory: mesonet-website
         run: tree
 
-      - name: Show TypeScript compiler options
+      - name: Generate environment.ts
         working-directory: mesonet-website
-        run: cat tsconfig.json
+        run: |
+          mkdir -p mesonet-website/src/environments
+          echo "export const environment = { production: false, apiToken: '' };" > mesonet-website/src/environments/environment.ts
 
       - name: Build Angular app to prod
         working-directory: mesonet-website
