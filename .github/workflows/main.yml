@@ -23,8 +23,8 @@ jobs:
       - name: Generate environment.ts
         working-directory: mesonet-website
         run: |
-          mkdir -p mesonet-website/src/environments
-          echo "export const environment = { production: false, apiToken: '' };" > mesonet-website/src/environments/environment.ts
+          mkdir -p src/environments
+          echo "export const environment = { production: false, apiToken: '' };" > src/environments/environment.ts
 
       - name: Show project structure
         working-directory: mesonet-website
