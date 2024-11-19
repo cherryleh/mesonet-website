@@ -322,6 +322,15 @@
       </div>
     </div>
   </div>
+  <div *ngIf="data">
+    <h1>API Data:</h1>
+    <pre>{{ data | json }}</pre>
+  </div>
+
+  <div *ngIf="!data">
+    <p>Loading data...</p>
+  </div>
+
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
