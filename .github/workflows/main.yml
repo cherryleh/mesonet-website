@@ -24,7 +24,7 @@ jobs:
         working-directory: mesonet-website
         run: |
           mkdir -p src/environments
-          echo "export const environment = { production: false, apiToken: '${{ secrets.API_CONFIG_JSON }}' };" > src/environments/environment.ts
+          echo "export const environment = { production: false, apiToken: '${{}}' };" > src/environments/environment.ts
 
       - name: Verify environment.prod.ts contents
         working-directory: mesonet-website
