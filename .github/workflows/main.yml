@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: 18
       - name: Inject API token into environment.prod.ts
+        working-directory: mesonet-website
         run: |
           mkdir -p src/environments
+          echo "export const environment = { production: true, apiToken: '${{ secrets.API_CONFIG_JSON }}' };" > src/environments/environment.prod.ts
       - name: Show project structure
         working-directory: mesonet-website
         run: tree
