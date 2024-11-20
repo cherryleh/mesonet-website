@@ -19,7 +19,9 @@ jobs:
       - name: Inject API token into environment.prod.ts
         run: |
           mkdir -p src/environments
-          echo "${{ secrets.API_CONFIG_JSON }}" | base64 -d >> src/environments/environment.prod.ts
+      - name: Show project structure
+        working-directory: mesonet-website
+        run: tree
       - name: Generate environment.ts
         working-directory: mesonet-website
         run: |
