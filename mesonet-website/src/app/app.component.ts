@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
         this.configService.getApiConfig().subscribe({
             next: (config) => {
                 this.apiToken = config.apiToken;
-                console.log('API Token fetched:', this.apiToken);  // Debugging line
                 if (this.apiToken) {
                     this.fetchData();
                 } else {
