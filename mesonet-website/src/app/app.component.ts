@@ -24,7 +24,12 @@ export class AppComponent implements OnInit {
         this.configService.getApiConfig().subscribe({
             next: (config) => {
                 this.apiToken = config.apiToken;
-                this.fetchData();
+                console.log('API Token fetched:', this.apiToken);  // Debugging line
+                if (this.apiToken) {
+                    this.fetchData();
+                } else {
+                    console.error('API token is missing!');
+                }
             },
             error: (err) => console.error('Error fetching config:', err),
         });
@@ -32,7 +37,7 @@ export class AppComponent implements OnInit {
 
     fetchData(): void {
         const apiUrl = 'https://api.hcdp.ikewai.org/mesonet/db/measurements?location=hawaii&station_ids=0288&var_ids=RF_1_Tot300s&limit=10&local_tz=True';
-
+        
         const headers = new HttpHeaders({
             Authorization: `Bearer ${this.apiToken}`,
         });
@@ -40,10 +45,10 @@ export class AppComponent implements OnInit {
         this.http.get(apiUrl, { headers }).subscribe({
             next: (response) => {
                 this.data = response;
-                console.log('Fetched Data:', this.data);
+                console.log('Fetched Data:', this.data);  // Log the fetched data
             },
-            error: (err) => console.error('Error fetching data:', err),
-            complete: () => console.log('API request complete'),
+            error: (err) => console.error('Error fetching data:', err),  // Log any error
+            complete: () => console.log('API request complete'),  // Log when the request is complete
         });
     }
 }
