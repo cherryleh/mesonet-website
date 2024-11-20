@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 18
       - name: Inject API token into environment.prod.ts
+        working-directory: mesonet-website
         run: |
           mkdir -p src/environments
       - name: Show project structure
