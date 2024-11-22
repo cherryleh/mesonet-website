@@ -177,6 +177,7 @@
   }
 </style>
 
+
 <main class="main">
   <div class="content">
     <div class="left-side">
@@ -324,12 +325,16 @@
   </div>
 </main>
 
-<p *ngIf="data; else loading">Data fetched successfully:</p>
-<pre *ngIf="data">{{ data | json }}</pre>
+<div *ngIf="rainfall && temperature; else loading">
+  <p>Rainfall: {{ rainfall }}</p>
+  <p>Temperature: {{ temperature }}</p>
+  <p>Timestamp:</p> {{ timestamp }}
+</div>
 
 <ng-template #loading>
   <p>Loading data...</p>
 </ng-template>
+<router-outlet></router-outlet>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
