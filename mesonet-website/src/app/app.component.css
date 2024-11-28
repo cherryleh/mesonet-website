@@ -1,0 +1,45 @@
+/* app.component.css */
+.navbar {
+    background-color: #333; /* Dark background color */
+    padding: 10px 20px; /* Padding for space around items */
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin: 0 15px; /* Add space between links */
+  }
+  
+  .nav-links a {
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underlines */
+    font-size: 18px;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  .nav-links .active {
+    font-weight: bold; /* Highlight active link */
+    color: #4CAF50; /* Change color for active link */
+  }
+  
+  /* Optional: Add responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column; /* Stack links vertically on small screens */
+      align-items: center; /* Center align links */
+    }
+  
+    .nav-links li {
+      margin: 10px 0; /* Add margin for spacing */
+    }
+  }
+  

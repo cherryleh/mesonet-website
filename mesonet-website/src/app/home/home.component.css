@@ -1,0 +1,11 @@
+/* home.component.css */
+.section {
+    text-align: center;
+    padding: 50px;
+    /* background-color: #f4f4f4; */
+    margin-top: 20px;
+  }
+  
+.title{
+  font-size: 3vw;
+}
