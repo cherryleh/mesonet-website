@@ -2,8 +2,9 @@
 .section {
     text-align: center;
     padding: 50px;
-    /* background-color: #f4f4f4; */
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
   }
   
 .title{
