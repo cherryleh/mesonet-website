@@ -1,17 +1,10 @@
+<div>
+    <h3>Latest Data</h3>
+    <p *ngIf="latestTimestamp">Last updated: {{ getFormattedTimestamp() }}</p>
 
-<div *ngIf="isLoading">
-    <p>Loading data...</p>
-  </div>
-  
-  <div *ngIf="errorMessage">
-    <p class="error">{{ errorMessage }}</p>
-  </div>
-  
-  <div *ngIf="!isLoading && !errorMessage">
-    <ul>
-      <li *ngFor="let item of data">
-        {{ item.name }}: {{ item.value }}
-      </li>
-    </ul>
+      <p *ngFor="let key of objectKeys(variables)">
+        <strong>{{ key }}:</strong> {{ variables[key] }}
+      </p>
+
   </div>
   
