@@ -1,0 +1,17 @@
+
+<div *ngIf="isLoading">
+    <p>Loading data...</p>
+  </div>
+  
+  <div *ngIf="errorMessage">
+    <p class="error">{{ errorMessage }}</p>
+  </div>
+  
+  <div *ngIf="!isLoading && !errorMessage">
+    <ul>
+      <li *ngFor="let item of data">
+        {{ item.name }}: {{ item.value }}
+      </li>
+    </ul>
+  </div>
+  

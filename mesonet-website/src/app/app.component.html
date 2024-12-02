@@ -176,29 +176,9 @@
     }
   }
 </style>
-<!-- app.component.html -->
-<!-- <nav class="navbar">
-  <ul class="nav-links">
-    <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-  </ul>
-</nav> -->
 
-<!-- The content injected based on the route -->
-<!-- <router-outlet></router-outlet> -->
-
-
-
-<div *ngIf="rainfall && temperature; else loading">
-  <p>Rainfall: {{ rainfall }}</p>
-  <p>Temperature: {{ temperature }}</p>
-  <p>Timestamp:</p> {{ timestamp }}
-</div>
-
-<ng-template #loading>
-  <p>Loading data...</p>
-</ng-template>
 <router-outlet></router-outlet>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
