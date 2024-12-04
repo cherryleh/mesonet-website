@@ -1,13 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Mesonet Website</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
-</html>
+<script>
+  // Redirect to index.html with the current path for Angular routing
+  var path = window.location.pathname;
+  var redirectPath = '/mesonet-website/';
+  if (!path.startsWith(redirectPath)) {
+    path = redirectPath + path;
+  }
+  window.location.href = redirectPath + 'index.html';
+</script>
