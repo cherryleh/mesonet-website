@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <script>
-    // Set the base path for the Angular app
-    var baseHref = '/mesonet-website/';
-    var path = window.location.pathname;
-
-    if (path.startsWith(baseHref)) {
-      // Extract the route after the baseHref
-      var route = path.slice(baseHref.length);
-
-      // Redirect to index.html with the route as a hash fragment
-      window.location.replace(baseHref + 'index.html#/' + route + window.location.search + window.location.hash);
-    } else {
-      // Redirect to the baseHref if the path doesn't start with it
-      window.location.replace(baseHref);
-    }
-  </script>
+  <title>Mesonet Website</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <h1>Redirecting...</h1>
-  <p>If you are not redirected automatically, <a href="/mesonet-website/">click here</a>.</p>
+  <app-root></app-root>
 </body>
 </html>
