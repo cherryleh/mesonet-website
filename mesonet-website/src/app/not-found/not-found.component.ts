@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-not-found',
-  standalone: true,
-  imports: [],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  template: `
+    <h1>404 - Page Not Found</h1>
+    <p>The page you're looking for doesn't exist.</p>
+    <a routerLink="/">Go Back to Home</a>
+  `,
+  styles: [`
+    h1 { color: red; }
+  `]
 })
-export class NotFoundComponent {
-
-}
+export class NotFoundComponent {}
